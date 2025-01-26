@@ -1,0 +1,13 @@
+<p>To solve the issue, you can add error handling and provide fallback content.  Here's an example using JavaScript to check if the PDF exists before embedding it:</p><pre><code class="language-html">&lt;object id="myPDF" data="valid-source.pdf" type="application/pdf"&gt;&lt;embed src="valid-source.pdf" type="application/pdf" /&gt;&lt;/object&gt;
+&lt;script&gt;
+  const pdfObject = document.getElementById('myPDF');
+  fetch('valid-source.pdf')
+    .then(response =&gt; {
+      if (!response.ok) {
+        pdfObject.innerHTML = '&lt;p&gt;Error loading PDF. Please check the source.&lt;/p&gt;';
+      }
+    })
+    .catch(error =&gt; {
+      pdfObject.innerHTML = '&lt;p&gt;Error loading PDF: ' + error + '&lt;/p&gt;';
+    });
+&lt;/script&gt;</code></pre><p>This enhanced code first checks if the PDF exists. If not, it replaces the object with an informative message, enhancing the user experience.</p>
